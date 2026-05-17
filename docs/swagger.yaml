@@ -1,0 +1,83 @@
+definitions:
+  api.createQouteSuccessResponseBody:
+    properties:
+      data:
+        $ref: '#/definitions/api.qoute'
+      message: {}
+    type: object
+  api.errResponseBody:
+    properties:
+      data: {}
+      message:
+        type: string
+    type: object
+  api.qoute:
+    properties:
+      author:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: string
+      qoute_text:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  api.qouteRequestBody:
+    properties:
+      author:
+        type: string
+      qoute_text:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: Simple http server for creating go-blog and hosting go-blog
+  title: go-blog API
+  version: "1.0"
+paths:
+  /v1/api/go-blog:
+    post:
+      consumes:
+      - application/json
+      description: This endpoint is used to create new go-blog
+      parameters:
+      - description: Qoute Data
+        in: body
+        name: qoute
+        required: true
+        schema:
+          $ref: '#/definitions/api.qouteRequestBody'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Qoute Created
+          schema:
+            $ref: '#/definitions/api.createQouteSuccessResponseBody'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/api.errResponseBody'
+      summary: Creates a new Qoute
+      tags:
+      - go-blog
+  /v1/api/go-blog/random:
+    get:
+      description: This endpoint is used to return random go-blog
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Qoute returned
+          schema:
+            $ref: '#/definitions/api.createQouteSuccessResponseBody'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/api.errResponseBody'
+      summary: Gets a random qoute from the server
+      tags:
+      - go-blog
+swagger: "2.0"

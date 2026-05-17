@@ -1,0 +1,19 @@
+{
+  "name": "go-blog",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "tailwind": "bunx @tailwindcss/cli -i ./static/css/input.css -o ./static/css/output.css --watch",
+    "build:css": "bunx @tailwindcss/cli -i ./static/css/input.css -o ./static/css/output.css"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.2.4",
+    "tailwindcss": "^4.2.4"
+  }
+}

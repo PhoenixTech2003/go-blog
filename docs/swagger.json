@@ -1,0 +1,128 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Simple http server for creating go-blog and hosting go-blog",
+        "title": "go-blog API",
+        "contact": {},
+        "version": "1.0"
+    },
+    "paths": {
+        "/v1/api/go-blog": {
+            "post": {
+                "description": "This endpoint is used to create new go-blog",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "go-blog"
+                ],
+                "summary": "Creates a new Qoute",
+                "parameters": [
+                    {
+                        "description": "Qoute Data",
+                        "name": "qoute",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/api.qouteRequestBody"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Qoute Created",
+                        "schema": {
+                            "$ref": "#/definitions/api.createQouteSuccessResponseBody"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/api.errResponseBody"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/api/go-blog/random": {
+            "get": {
+                "description": "This endpoint is used to return random go-blog",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "go-blog"
+                ],
+                "summary": "Gets a random qoute from the server",
+                "responses": {
+                    "200": {
+                        "description": "Qoute returned",
+                        "schema": {
+                            "$ref": "#/definitions/api.createQouteSuccessResponseBody"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/api.errResponseBody"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "api.createQouteSuccessResponseBody": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/api.qoute"
+                },
+                "message": {}
+            }
+        },
+        "api.errResponseBody": {
+            "type": "object",
+            "properties": {
+                "data": {},
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "api.qoute": {
+            "type": "object",
+            "properties": {
+                "author": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "qoute_text": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "api.qouteRequestBody": {
+            "type": "object",
+            "properties": {
+                "author": {
+                    "type": "string"
+                },
+                "qoute_text": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

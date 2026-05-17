@@ -1,0 +1,25 @@
+package components
+
+import "github.com/PhoenixTech2003/go-blog/internal/database"
+
+templ RandomQouteSection(randomQoute database.Quote) {
+	<div id="random" class="space-y-stack-md flex flex-col items-center">
+		<blockquote class="font-display-quote text-display-quote text-primary tracking-tight px-4 leading-tight">
+			"{ randomQoute.QouteText }"
+		</blockquote>
+		<div class="flex items-center space-x-stack-sm pt-4">
+			<span class="w-8 h-px bg-primary opacity-30"></span>
+			<cite class="font-label-sm text-label-sm text-secondary uppercase not-italic">{ randomQoute.Author }</cite>
+		</div>
+		<div class="mt-stack-lg">
+			<button
+				type="button"
+				class="bg-primary-container text-white px-stack-lg py-4 rounded-lg font-headline-md text-headline-md hover:opacity-90 active:scale-95 transition-all duration-200 shadow-sm"
+				data-on:click="@get('/fragments/random-quote')"
+				data-indicator:_rqFetching
+			>
+				Fetch Random Quote
+			</button>
+		</div>
+	</div>
+}

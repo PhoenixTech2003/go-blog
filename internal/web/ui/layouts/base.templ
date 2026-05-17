@@ -1,0 +1,28 @@
+package layouts
+
+import "github.com/PhoenixTech2003/go-blog/internal/web/ui/components"
+
+templ Base() {
+	<html>
+		<head>
+			<meta charset="utf-8"/>
+			<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+			<title>github.com/PhoenixTech2003/go-blog</title>
+			<link rel="stylesheet" href="/static/css/output.css"/>
+			<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+			<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+			<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+			<script type="module" src="https://cdn.jsdelivr.net/gh/starfederation/datastar@v1.0.1/bundles/datastar.js"></script>
+			<script defer src="/static/js/quicklink.umd.js"></script>
+			<script defer>
+			   window.addEventListener('load', () => {
+			    quicklink.listen();
+			  });
+			</script>
+		</head>
+		<body class="font-body-md antialiased min-h-screen flex flex-col">
+			@components.AppBar()
+			{ children... }
+		</body>
+	</html>
+}

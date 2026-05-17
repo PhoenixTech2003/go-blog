@@ -1,0 +1,15 @@
+package pages
+
+import "github.com/PhoenixTech2003/go-blog/internal/web/ui/layouts"
+import "github.com/PhoenixTech2003/go-blog/internal/web/ui/components"
+
+templ Compose(formSubmissionSuccessful *bool) {
+	@layouts.Base() {
+		<main class="grow flex flex-col items-center justify-center px-margin-mobile md:px-margin-desktop py-stack-lg" style="padding-top: 80px;">
+			<div class="w-full max-w-2xl mx-auto flex flex-col gap-stack-lg">
+				@components.ComposeHeader()
+				@components.ComposeForm(formSubmissionSuccessful)
+			</div>
+		</main>
+	}
+}
