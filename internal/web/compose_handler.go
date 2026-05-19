@@ -34,12 +34,12 @@ func (cfg *WebCfg) HandleCreateQoute(w http.ResponseWriter, r *http.Request) {
 
 	author := r.FormValue("author")
 	qoute := r.FormValue("qoute")
-	createQouteParams := database.CreateQouteParams{
-		QouteText: qoute,
-		Author:    author,
+	createQouteParams := database.CreateAritcleParams{
+		ArticleText: qoute,
+		Author:      author,
 	}
 
-	_, err := cfg.Db.CreateQoute(r.Context(), createQouteParams)
+	_, err := cfg.Db.CreateAritcle(r.Context(), createQouteParams)
 	if err != nil {
 		slog.Error("Failed to create qoute with error %s", "error", err.Error())
 		sse := datastar.NewSSE(w, r)

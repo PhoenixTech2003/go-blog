@@ -15,9 +15,9 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/v1/api/go-blog": {
+        "/v1/api/articles": {
             "post": {
-                "description": "This endpoint is used to create new go-blog",
+                "description": "This endpoint is used to create a new article",
                 "consumes": [
                     "application/json"
                 ],
@@ -25,25 +25,25 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "go-blog"
+                    "articles"
                 ],
-                "summary": "Creates a new Qoute",
+                "summary": "Creates a new blog article",
                 "parameters": [
                     {
-                        "description": "Qoute Data",
+                        "description": "Article Data",
                         "name": "qoute",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/api.qouteRequestBody"
+                            "$ref": "#/definitions/api.articleRequestBody"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "Qoute Created",
+                        "description": "Article Created Succefully",
                         "schema": {
-                            "$ref": "#/definitions/api.createQouteSuccessResponseBody"
+                            "$ref": "#/definitions/api.createArticleSuccessResponseBody"
                         }
                     },
                     "500": {
@@ -55,21 +55,35 @@ const docTemplate = `{
                 }
             }
         },
-        "/v1/api/go-blog/random": {
-            "get": {
-                "description": "This endpoint is used to return random go-blog",
+        "/v1/api/tags": {
+            "post": {
+                "description": "This endpoint is used to create a new tag",
+                "consumes": [
+                    "application/json"
+                ],
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
-                    "go-blog"
+                    "tags"
                 ],
-                "summary": "Gets a random qoute from the server",
-                "responses": {
-                    "200": {
-                        "description": "Qoute returned",
+                "summary": "Creates a new tag",
+                "parameters": [
+                    {
+                        "description": "Tag Data",
+                        "name": "qoute",
+                        "in": "body",
+                        "required": true,
                         "schema": {
-                            "$ref": "#/definitions/api.createQouteSuccessResponseBody"
+                            "$ref": "#/definitions/api.createTagRequestBody"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Tag Created Succefully",
+                        "schema": {
+                            "$ref": "#/definitions/api.createTagSuccessResponseBody"
                         }
                     },
                     "500": {
@@ -83,13 +97,69 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "api.createQouteSuccessResponseBody": {
+        "api.article": {
+            "type": "object",
+            "properties": {
+                "article_text": {
+                    "type": "string"
+                },
+                "author": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "published_at": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "api.articleRequestBody": {
+            "type": "object",
+            "properties": {
+                "article_text": {
+                    "type": "string"
+                },
+                "author": {
+                    "type": "string"
+                },
+                "tag_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "api.createArticleSuccessResponseBody": {
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/api.qoute"
+                    "$ref": "#/definitions/api.article"
                 },
                 "message": {}
+            }
+        },
+        "api.createTagRequestBody": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "api.createTagSuccessResponseBody": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/api.tag"
+                },
+                "message": {
+                    "type": "string"
+                }
             }
         },
         "api.errResponseBody": {
@@ -101,33 +171,19 @@ const docTemplate = `{
                 }
             }
         },
-        "api.qoute": {
+        "api.tag": {
             "type": "object",
             "properties": {
-                "author": {
-                    "type": "string"
-                },
                 "created_at": {
                     "type": "string"
                 },
                 "id": {
                     "type": "string"
                 },
-                "qoute_text": {
+                "name": {
                     "type": "string"
                 },
                 "updated_at": {
-                    "type": "string"
-                }
-            }
-        },
-        "api.qouteRequestBody": {
-            "type": "object",
-            "properties": {
-                "author": {
-                    "type": "string"
-                },
-                "qoute_text": {
                     "type": "string"
                 }
             }
