@@ -8,3 +8,6 @@ VALUES (
 )
 
 RETURNING *;
+
+-- name: GetTags :many
+SELECT * FROM tags;
