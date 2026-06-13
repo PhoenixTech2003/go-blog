@@ -10,10 +10,26 @@ import (
 	"github.com/google/uuid"
 )
 
-type Quote struct {
+type Article struct {
+	ID          uuid.UUID
+	Author      string
+	ArticleText string
+	PublishedAt sql.NullTime
+	CreatedAt   sql.NullTime
+	UpdatedAt   sql.NullTime
+}
+
+type Tag struct {
 	ID        uuid.UUID
-	Author    string
-	QouteText string
+	Name      string
+	CreatedAt sql.NullTime
+	UpdatedAt sql.NullTime
+}
+
+type Tagsarticle struct {
+	ID        uuid.UUID
+	AritcleID uuid.UUID
+	TagID     uuid.UUID
 	CreatedAt sql.NullTime
 	UpdatedAt sql.NullTime
 }

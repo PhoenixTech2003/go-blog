@@ -1,15 +1,13 @@
 package components
 
-import "github.com/PhoenixTech2003/go-blog/internal/database"
-
-templ RandomQouteSection(randomQoute database.Quote) {
+templ RandomQouteSection(randomQoute string) {
 	<div id="random" class="space-y-stack-md flex flex-col items-center">
 		<blockquote class="font-display-quote text-display-quote text-primary tracking-tight px-4 leading-tight">
-			"{ randomQoute.QouteText }"
+			"{ randomQoute }"
 		</blockquote>
 		<div class="flex items-center space-x-stack-sm pt-4">
 			<span class="w-8 h-px bg-primary opacity-30"></span>
-			<cite class="font-label-sm text-label-sm text-secondary uppercase not-italic">{ randomQoute.Author }</cite>
+			<cite class="font-label-sm text-label-sm text-secondary uppercase not-italic">{ randomQoute }</cite>
 		</div>
 		<div class="mt-stack-lg">
 			<button

@@ -63,8 +63,8 @@ func main() {
 	mux.Handle("/static/css/", http.StripPrefix("/static/css", http.FileServer(http.FS(cssFS))))
 	mux.Handle("/static/js/", http.StripPrefix("/static/js", http.FileServer(http.FS(jsFS))))
 
-	apiPrefix := "/v1/api/go-blog"
-	mux.Handle(apiPrefix+"/", http.StripPrefix(apiPrefix, api.QouteRouter()))
+	mux.Handle("/v1/api/articles/", http.StripPrefix("/v1/api/articles", api.ArticlesRouter()))
+	mux.Handle("/v1/api/tags/", http.StripPrefix("/v1/api/tags", api.TagsRouter()))
 
 	mux.Handle("/compose/", http.StripPrefix("/compose", web.ComposeRouter()))
 	mux.Handle("/", web.IndexRouter())

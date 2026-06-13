@@ -1,9 +1,45 @@
 definitions:
-  api.createQouteSuccessResponseBody:
+  api.article:
+    properties:
+      article_text:
+        type: string
+      author:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: string
+      published_at:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  api.articleRequestBody:
+    properties:
+      article_text:
+        type: string
+      author:
+        type: string
+      tag_id:
+        type: string
+    type: object
+  api.createArticleSuccessResponseBody:
     properties:
       data:
-        $ref: '#/definitions/api.qoute'
+        $ref: '#/definitions/api.article'
       message: {}
+    type: object
+  api.createTagRequestBody:
+    properties:
+      name:
+        type: string
+    type: object
+  api.createTagSuccessResponseBody:
+    properties:
+      data:
+        $ref: '#/definitions/api.tag'
+      message:
+        type: string
     type: object
   api.errResponseBody:
     properties:
@@ -11,24 +47,24 @@ definitions:
       message:
         type: string
     type: object
-  api.qoute:
+  api.getTagsSuccessResponseBody:
     properties:
-      author:
+      data:
+        items:
+          $ref: '#/definitions/api.tag'
+        type: array
+      message:
         type: string
+    type: object
+  api.tag:
+    properties:
       created_at:
         type: string
       id:
         type: string
-      qoute_text:
+      name:
         type: string
       updated_at:
-        type: string
-    type: object
-  api.qouteRequestBody:
-    properties:
-      author:
-        type: string
-      qoute_text:
         type: string
     type: object
 info:
@@ -37,47 +73,72 @@ info:
   title: go-blog API
   version: "1.0"
 paths:
-  /v1/api/go-blog:
+  /v1/api/articles:
     post:
       consumes:
       - application/json
-      description: This endpoint is used to create new go-blog
+      description: This endpoint is used to create a new article
       parameters:
-      - description: Qoute Data
+      - description: Article Data
         in: body
         name: qoute
         required: true
         schema:
-          $ref: '#/definitions/api.qouteRequestBody'
+          $ref: '#/definitions/api.articleRequestBody'
       produces:
       - application/json
       responses:
         "201":
-          description: Qoute Created
+          description: Article Created Succefully
           schema:
-            $ref: '#/definitions/api.createQouteSuccessResponseBody'
+            $ref: '#/definitions/api.createArticleSuccessResponseBody'
         "500":
           description: Internal Server Error
           schema:
             $ref: '#/definitions/api.errResponseBody'
-      summary: Creates a new Qoute
+      summary: Creates a new blog article
       tags:
-      - go-blog
-  /v1/api/go-blog/random:
+      - articles
+  /v1/api/tags:
     get:
-      description: This endpoint is used to return random go-blog
+      description: This endpoint is used to get all tags
       produces:
       - application/json
       responses:
-        "200":
-          description: Qoute returned
+        "201":
+          description: Tags fetched  Succefully
           schema:
-            $ref: '#/definitions/api.createQouteSuccessResponseBody'
+            $ref: '#/definitions/api.getTagsSuccessResponseBody'
         "500":
           description: Internal Server Error
           schema:
             $ref: '#/definitions/api.errResponseBody'
-      summary: Gets a random qoute from the server
+      summary: Gets all tags
       tags:
-      - go-blog
+      - tags
+    post:
+      consumes:
+      - application/json
+      description: This endpoint is used to create a new tag
+      parameters:
+      - description: Tag Data
+        in: body
+        name: qoute
+        required: true
+        schema:
+          $ref: '#/definitions/api.createTagRequestBody'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Tag Created Succefully
+          schema:
+            $ref: '#/definitions/api.createTagSuccessResponseBody'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/api.errResponseBody'
+      summary: Creates a new tag
+      tags:
+      - tags
 swagger: "2.0"
