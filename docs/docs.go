@@ -56,6 +56,30 @@ const docTemplate = `{
             }
         },
         "/v1/api/tags": {
+            "get": {
+                "description": "This endpoint is used to get all tags",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "tags"
+                ],
+                "summary": "Gets all tags",
+                "responses": {
+                    "201": {
+                        "description": "Tags fetched  Succefully",
+                        "schema": {
+                            "$ref": "#/definitions/api.getTagsSuccessResponseBody"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/api.errResponseBody"
+                        }
+                    }
+                }
+            },
             "post": {
                 "description": "This endpoint is used to create a new tag",
                 "consumes": [
@@ -166,6 +190,20 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "data": {},
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "api.getTagsSuccessResponseBody": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/api.tag"
+                    }
+                },
                 "message": {
                     "type": "string"
                 }

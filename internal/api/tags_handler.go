@@ -25,6 +25,11 @@ type createTagSuccessResponseBody struct {
 	Message string `json:"message"`
 }
 
+type getTagsSuccessResponseBody struct {
+	Data    []tag  `json:"data"`
+	Message string `json:"message"`
+}
+
 // CreateTags godoc
 //
 // @Tags tags
@@ -90,5 +95,61 @@ func (cfg *ApiCfg) CreateTags(w http.ResponseWriter, r *http.Request) {
 	}
 
 	utils.RespondWithJson(w, dat, http.StatusInternalServerError)
+
+}
+
+// GetTags godoc
+//
+// @Tags tags
+// @Summary Gets all tags
+// @Description This endpoint is used to get all tags
+// @Produce json
+// @Success 201 {object} getTagsSuccessResponseBody "Tags fetched  Succefully"
+// @Failure 500 {object} errResponseBody "Internal Server Error"
+// @Router /v1/api/tags [get]
+func (cfg *ApiCfg) GetTags(w http.ResponseWriter, r *http.Request) {
+	dat, err := cfg.Db.GetTags(r.Context())
+	if err != nil {
+		errRespnse := errResponseBody{
+			Message: "Failed to fetch all tags",
+		}
+		dat, err := json.Marshal(errRespnse)
+		if err != nil {
+			log.Fatal("Failed to marshal json")
+			return
+		}
+		utils.RespondWithJson(w, dat, http.StatusInternalServerError)
+	}
+
+	tagsList := make([]tag, 0)
+
+	for _, tagDetails := range dat {
+		tagData := tag{
+			Id:        tagDetails.ID.String(),
+			Name:      tagDetails.Name,
+			CreatedAt: nullTimeValue(tagDetails.CreatedAt),
+			UpdatedAt: nullTimeValue(tagDetails.UpdatedAt),
+		}
+
+		tagsList = append(tagsList, tagData)
+	}
+
+	successBody := getTagsSuccessResponseBody{
+		Data: tagsList,
+	}
+	successBodyDat, err := json.Marshal(successBody)
+	if err != nil {
+		errRespnse := errResponseBody{
+			Message: "Failed to fetch all tags",
+		}
+		dat, err := json.Marshal(errRespnse)
+		if err != nil {
+			log.Fatal("Failed to marshal json")
+			return
+		}
+		utils.RespondWithJson(w, dat, http.StatusInternalServerError)
+	}
+
+	utils.RespondWithJson(w, successBodyDat, http.StatusOK)
 
 }
