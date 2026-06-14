@@ -29,7 +29,7 @@ func RandomQouteSection(randomQoute string) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div id=\"random\" class=\"space-y-stack-md flex flex-col items-center\"><blockquote class=\"font-display-quote text-display-quote text-primary tracking-tight px-4 leading-tight\">\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div id=\"random\" class=\"space-y-stack-md flex flex-col items-center\"><blockquote class=\"type-display-lg text-primary tracking-tight px-4 leading-tight\">\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -42,20 +42,20 @@ func RandomQouteSection(randomQoute string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "\"</blockquote><div class=\"flex items-center space-x-stack-sm pt-4\"><span class=\"w-8 h-px bg-primary opacity-30\"></span> <cite class=\"font-label-sm text-label-sm text-secondary uppercase not-italic\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "\"</blockquote><div class=\"flex items-center space-x-stack-sm pt-4\"><span class=\"w-8 h-px bg-primary opacity-30\"></span> <cite class=\"type-label-sm text-secondary uppercase not-italic\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var3 string
 		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(randomQoute)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/web/ui/components/randomQouteSection.templ`, Line: 10, Col: 94}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/web/ui/components/randomQouteSection.templ`, Line: 10, Col: 80}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</cite></div><div class=\"mt-stack-lg\"><button type=\"button\" class=\"bg-primary-container text-white px-stack-lg py-4 rounded-lg font-headline-md text-headline-md hover:opacity-90 active:scale-95 transition-all duration-200 shadow-sm\" data-on:click=\"@get('/fragments/random-quote')\" data-indicator:_rqFetching>Fetch Random Quote</button></div></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</cite></div><div class=\"mt-stack-lg\"><button type=\"button\" class=\"bg-primary text-on-primary px-stack-lg py-4 rounded font-headline-md text-headline-md hover:opacity-90 active:scale-95 transition-all duration-200\" data-on:click=\"@get('/fragments/random-quote')\" data-indicator:_rqFetching>Fetch Random Quote</button></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

@@ -43,7 +43,7 @@ func Index(randomQoute string) templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<main class=\"grow flex flex-col items-center justify-center pt-32 pb-40 px-gutter\"><div class=\"quote-column w-full flex flex-col items-center text-center\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<main class=\"grow flex flex-col items-center justify-center pt-32 pb-40 px-margin-mobile md:px-gutter\"><div class=\"w-full max-w-reading-max flex flex-col items-center text-center\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
