@@ -556,13 +556,6 @@
       font-weight: var(--text-display-lg--font-weight);
     }
   }
-  .type-label-md {
-    font-family: var(--font-label-md);
-    font-size: var(--text-label-md);
-    line-height: var(--text-label-md--line-height);
-    letter-spacing: var(--text-label-md--letter-spacing);
-    font-weight: var(--text-label-md--font-weight);
-  }
   .type-label-sm {
     font-family: var(--font-label-sm);
     font-size: var(--text-label-sm);
