@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#000000",
+                    "on-tertiary-fixed-variant": "#484645",
+                    "background": "#fdf8f8",
+                    "on-secondary-fixed": "#0f0069",
+                    "secondary-fixed-dim": "#c3c0ff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-tint": "#5f5e5e",
+                    "on-surface-variant": "#444748",
+                    "on-secondary-container": "#fffbff",
+                    "surface-container-highest": "#e5e2e1",
+                    "tertiary-fixed": "#e6e2df",
+                    "error-container": "#ffdad6",
+                    "outline": "#747878",
+                    "on-surface": "#1c1b1b",
+                    "surface-container-low": "#f7f3f2",
+                    "on-primary-container": "#858383",
+                    "on-tertiary-fixed": "#1c1b1a",
+                    "on-primary-fixed": "#1c1b1b",
+                    "primary-fixed-dim": "#c8c6c5",
+                    "on-tertiary-container": "#868382",
+                    "primary-container": "#1c1b1b",
+                    "on-error": "#ffffff",
+                    "secondary": "#4b41e1",
+                    "on-secondary": "#ffffff",
+                    "on-background": "#1c1b1b",
+                    "secondary-fixed": "#e2dfff",
+                    "inverse-surface": "#313030",
+                    "surface-container-high": "#ebe7e6",
+                    "surface-variant": "#e5e2e1",
+                    "primary-fixed": "#e5e2e1",
+                    "outline-variant": "#c4c7c7",
+                    "on-secondary-fixed-variant": "#3323cc",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed-variant": "#474746",
+                    "surface-dim": "#ddd9d8",
+                    "error": "#ba1a1a",
+                    "inverse-on-surface": "#f4f0ef",
+                    "tertiary-container": "#1c1b1a",
+                    "surface-container": "#f1edec",
+                    "tertiary": "#000000",
+                    "surface": "#fdf8f8",
+                    "on-primary": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "secondary-container": "#645efb",
+                    "inverse-primary": "#c8c6c5",
+                    "surface-bright": "#fdf8f8",
+                    "tertiary-fixed-dim": "#cac6c4"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1120px",
+                    "section-gap": "80px",
+                    "reading-max": "720px",
+                    "unit": "8px",
+                    "gutter": "24px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Playfair Display"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Playfair Display"],
+                    "headline-sm": ["Playfair Display"],
+                    "display-lg-mobile": ["Playfair Display"],
+                    "label-md": ["Inter"],
+                    "label-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "body-lg": ["20px", {"lineHeight": "1.8", "fontWeight": "400"}],
+                    "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #fdf8f8;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- TopNavBar Shell -->
+<nav class="sticky top-0 z-50 flex justify-between items-center w-full px-margin-mobile md:px-gutter py-4 bg-surface border-b border-outline-variant max-w-container-max mx-auto">
+<div class="flex items-center gap-8">
+<a class="font-display-lg text-headline-sm font-bold text-primary" href="#">Minimalist</a>
+<div class="hidden md:flex gap-6 items-center">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md transition-colors" href="#">Feed</a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-primary transition-colors" href="#">Dashboard</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="bg-primary text-on-primary px-4 py-2 rounded-DEFAULT font-label-md text-label-md hover:opacity-80 transition-opacity flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                New Post
+            </button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</nav>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-gutter mt-12 mb-24">
+<!-- Filter and Sort Header -->
+<header class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+<div class="space-y-4">
+<h1 class="font-headline-md text-headline-md text-primary">The Reading List</h1>
+<div class="flex flex-wrap gap-2">
+<button class="px-4 py-1.5 bg-primary text-on-primary rounded-full font-label-sm text-label-sm">All</button>
+<button class="px-4 py-1.5 bg-surface-container-low text-on-surface-variant rounded-full font-label-sm text-label-sm hover:bg-surface-container-high transition-colors">Design</button>
+<button class="px-4 py-1.5 bg-surface-container-low text-on-surface-variant rounded-full font-label-sm text-label-sm hover:bg-surface-container-high transition-colors">Tech</button>
+<button class="px-4 py-1.5 bg-surface-container-low text-on-surface-variant rounded-full font-label-sm text-label-sm hover:bg-surface-container-high transition-colors">Life</button>
+</div>
+</div>
+<div class="relative group">
+<button class="flex items-center gap-2 px-4 py-2 border border-outline-variant rounded-DEFAULT font-label-md text-label-md text-on-surface-variant hover:border-primary transition-colors">
+                    Sort by Date
+                    <span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+</div>
+</header>
+<!-- Bento Article Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<!-- Featured Card (Asymmetric) -->
+<article class="md:col-span-8 group cursor-pointer">
+<div class="aspect-[16/9] overflow-hidden mb-6 rounded-lg bg-surface-variant">
+<img alt="Minimalist Workspace" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A clean, minimalist workspace featuring a white desk, a single designer lamp, and a small notebook. The lighting is soft and natural, coming from a large window out of frame. The composition is spacious and airy, emphasizing a quiet editorial aesthetic with a palette of soft whites and warm grays." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpm-bgBiNwGjJbfIe0oOfnap5Tyw96rl0CRwkb3cPSa2aFnltbWUQlcWqNYDkV9QerZtdndECkLLcuUzo_yHBFN-5uAJF5vbEg_bOetCv7glOJ-fSRYH0i1Qy-pbo2_8L90K-SXHvBk4UnAQH2NED2StAHYPOcZt4DsQiDQi4-PTGFofmzUqnZlgRynuTZ9Qcg9U9HpMWvHNvmONK7JFBv49Yt03eKEI9uNMS9tJF5qsw5QqZ-RZSu0rCsqgw5pFEOu1KTd87X"/>
+</div>
+<div class="space-y-3">
+<div class="flex items-center gap-4">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">Design</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Oct 24, 2024</span>
+</div>
+<h2 class="font-headline-md text-headline-md group-hover:text-secondary transition-colors leading-tight">The Art of Negative Space in Modern Digital Interfaces</h2>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2 max-w-2xl">Understanding how silence and void in design can amplify the impact of content and provide a focused sanctuary for the reader's attention.</p>
+</div>
+</article>
+<!-- Secondary Card -->
+<article class="md:col-span-4 group cursor-pointer">
+<div class="aspect-square overflow-hidden mb-6 rounded-lg bg-surface-variant">
+<img alt="Tech Evolution" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="An assortment of vintage and modern technology hardware arranged neatly on a matte black surface. A classic mechanical keyboard sits next to a sleek modern tablet. The lighting is low-key with high-contrast shadows, creating a sophisticated and intellectual mood using a monochrome color scheme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBe3tsK9XNrc9wdeliJyJpElC_n1PAFG8pogrbHauvpRSWDnto0vgremLvalBmlTklkNgPFV7JfxE7k5N4YOPWydA1G-pBXPJHceWCrnefLpqTfuk8kng3impflpjpk_H5tE14J2NbnASiZL54C9Xpkcs2dXSL846zgL3jIjhi_ED76hHP7Vj2_SB6-FHfAdY-usGHiGyMchhMYQ0crPqtLv9l3oYPnIpvXVw65-oK0gL6Nd1Y2TZz0qmmt5YUkzDXCKHTq4Z1b"/>
+</div>
+<div class="space-y-3">
+<div class="flex items-center gap-4">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">Tech</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Oct 22, 2024</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm group-hover:text-secondary transition-colors">Hardware for the Focused Mind</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-3">Evaluating the tools that prioritize utility over distraction in an age of constant connectivity.</p>
+</div>
+</article>
+<!-- Small List Items -->
+<div class="md:col-span-12 grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 border-t border-outline-variant">
+<article class="group cursor-pointer">
+<div class="space-y-3">
+<div class="flex items-center gap-4">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">Life</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Oct 20, 2024</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm group-hover:text-secondary transition-colors">Living with Less: A Year of Intentionality</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Personal reflections on the first twelve months of living with fewer than 100 essential possessions.</p>
+</div>
+</article>
+<article class="group cursor-pointer">
+<div class="space-y-3">
+<div class="flex items-center gap-4">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">Design</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Oct 18, 2024</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm group-hover:text-secondary transition-colors">Typography as Voice</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">How the weight and rhythm of a typeface dictates the internal monologue of the reader.</p>
+</div>
+</article>
+<article class="group cursor-pointer">
+<div class="space-y-3">
+<div class="flex items-center gap-4">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">Tech</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Oct 15, 2024</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm group-hover:text-secondary transition-colors">The Slow Web Manifesto</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Proposing a shift from algorithmic speed to human-paced discovery on the internet.</p>
+</div>
+</article>
+</div>
+</div>
+</main>
+<!-- Footer Shell -->
+<footer class="flex flex-col md:flex-row justify-between items-center w-full px-margin-mobile md:px-gutter py-8 max-w-container-max mx-auto gap-4 border-t border-outline-variant mt-section-gap">
+<div class="flex flex-col items-center md:items-start gap-2">
+<span class="font-display-lg text-headline-sm text-primary">Minimalist</span>
+<p class="font-body-md text-body-md text-on-surface-variant">© 2024 Minimalist. Designed for quiet focus.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="text-on-surface-variant font-label-sm text-label-sm hover:text-primary transition-colors" href="#">Archive</a>
+<a class="text-on-surface-variant font-label-sm text-label-sm hover:text-primary transition-colors" href="#">Newsletter</a>
+<a class="text-on-surface-variant font-label-sm text-label-sm hover:text-primary transition-colors" href="#">RSS Feed</a>
+<a class="text-on-surface-variant font-label-sm text-label-sm hover:text-primary transition-colors" href="#">Terms</a>
+</div>
+</footer>
+</body></html>
