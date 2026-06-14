@@ -1,13 +1,14 @@
 package pages
 
 import "github.com/PhoenixTech2003/go-blog/internal/web/ui/layouts"
-import "github.com/PhoenixTech2003/go-blog/internal/web/ui/components"
+
+import "github.com/PhoenixTech2003/go-blog/internal/web/ui/components/index"
 
 templ Index() {
 	@layouts.Base() {
 		<main class="max-w-container-max mx-auto px-margin-mobile md:px-gutter mt-12 mb-24">
-			@components.SortFilterHeader()
-			@components.ArticleGrid()
+			@index.SortFilterHeader()
+			@index.ArticleGrid()
 		</main>
 	}
 }

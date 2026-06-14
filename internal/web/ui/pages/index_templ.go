@@ -9,7 +9,8 @@ import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
 import "github.com/PhoenixTech2003/go-blog/internal/web/ui/layouts"
-import "github.com/PhoenixTech2003/go-blog/internal/web/ui/components"
+
+import "github.com/PhoenixTech2003/go-blog/internal/web/ui/components/index"
 
 func Index() templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
@@ -48,11 +49,11 @@ func Index() templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = components.SortFilterHeader().Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = index.SortFilterHeader().Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = components.ArticleGrid().Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = index.ArticleGrid().Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
