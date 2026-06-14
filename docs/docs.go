@@ -16,6 +16,30 @@ const docTemplate = `{
     "basePath": "{{.BasePath}}",
     "paths": {
         "/v1/api/articles": {
+            "get": {
+                "description": "This endpoint is used to get all articles",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "articles"
+                ],
+                "summary": "Gets all articles",
+                "responses": {
+                    "201": {
+                        "description": "Articles fetched  Succefully",
+                        "schema": {
+                            "$ref": "#/definitions/api.getArticlesSuccessResponseBody"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/api.errResponseBody"
+                        }
+                    }
+                }
+            },
             "post": {
                 "description": "This endpoint is used to create a new article",
                 "consumes": [
@@ -190,6 +214,20 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "data": {},
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "api.getArticlesSuccessResponseBody": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/api.article"
+                    }
+                },
                 "message": {
                     "type": "string"
                 }

@@ -31,6 +31,11 @@ type createArticleSuccessResponseBody struct {
 	Message any     `json:"message"`
 }
 
+type getArticlesSuccessResponseBody struct {
+	Data    []article `json:"data"`
+	Message string    `json:"message"`
+}
+
 // CreateArticle godoc
 //
 // @Tags articles
@@ -109,5 +114,63 @@ func (cfg *ApiCfg) CreateArticle(w http.ResponseWriter, r *http.Request) {
 	}
 
 	utils.RespondWithJson(w, dat, http.StatusOK)
+
+}
+
+// GetArticles godoc
+//
+// @Tags articles
+// @Summary Gets all articles
+// @Description This endpoint is used to get all articles
+// @Produce json
+// @Success 201 {object} getArticlesSuccessResponseBody "Articles fetched  Succefully"
+// @Failure 500 {object} errResponseBody "Internal Server Error"
+// @Router /v1/api/articles [get]
+func (cfg *ApiCfg) GetArticles(w http.ResponseWriter, r *http.Request) {
+	dat, err := cfg.Db.ListArticles(r.Context())
+	if err != nil {
+		errRespnse := errResponseBody{
+			Message: "Failed to fetch all articles",
+		}
+		dat, err := json.Marshal(errRespnse)
+		if err != nil {
+			log.Fatal("Failed to marshal json")
+			return
+		}
+		utils.RespondWithJson(w, dat, http.StatusInternalServerError)
+	}
+
+	articlesList := make([]article, 0)
+
+	for _, articleDetails := range dat {
+		articleData := article{
+			Id:          articleDetails.ID.String(),
+			Author:      articleDetails.Author,
+			ArticleText: articleDetails.ArticleText,
+			CreatedAt:   nullTimeValue(articleDetails.CreatedAt),
+			PublishedAt: nullTimeValue(articleDetails.PublishedAt),
+			UpdatedAt:   nullTimeValue(articleDetails.UpdatedAt),
+		}
+
+		articlesList = append(articlesList, articleData)
+	}
+
+	successBody := getArticlesSuccessResponseBody{
+		Data: articlesList,
+	}
+	successBodyDat, err := json.Marshal(successBody)
+	if err != nil {
+		errRespnse := errResponseBody{
+			Message: "Failed to fetch all articles",
+		}
+		dat, err := json.Marshal(errRespnse)
+		if err != nil {
+			log.Fatal("Failed to marshal json")
+			return
+		}
+		utils.RespondWithJson(w, dat, http.StatusInternalServerError)
+	}
+
+	utils.RespondWithJson(w, successBodyDat, http.StatusOK)
 
 }
