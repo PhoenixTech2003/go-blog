@@ -47,6 +47,15 @@ definitions:
       message:
         type: string
     type: object
+  api.getArticlesSuccessResponseBody:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/api.article'
+        type: array
+      message:
+        type: string
+    type: object
   api.getTagsSuccessResponseBody:
     properties:
       data:
@@ -74,6 +83,22 @@ info:
   version: "1.0"
 paths:
   /v1/api/articles:
+    get:
+      description: This endpoint is used to get all articles
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Articles fetched  Succefully
+          schema:
+            $ref: '#/definitions/api.getArticlesSuccessResponseBody'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/api.errResponseBody'
+      summary: Gets all articles
+      tags:
+      - articles
     post:
       consumes:
       - application/json
