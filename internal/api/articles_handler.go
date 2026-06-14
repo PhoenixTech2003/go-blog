@@ -9,6 +9,7 @@ import (
 
 	"github.com/PhoenixTech2003/go-blog/internal/database"
 	"github.com/PhoenixTech2003/go-blog/internal/utils"
+	"github.com/google/uuid"
 )
 
 type articleRequestBody struct {
@@ -75,6 +76,26 @@ func (cfg *ApiCfg) CreateArticle(w http.ResponseWriter, r *http.Request) {
 	articleData, err := cfg.Db.CreateAritcle(r.Context(), createQouteParams)
 	if err != nil {
 		slog.Error("An error occured while inserting article into the database", "error", err)
+		errorResponse := errResponseBody{
+			Message: "Failed to create article",
+		}
+		dat, err := json.Marshal(errorResponse)
+		if err != nil {
+			log.Fatal("Failed to marshal json during failed insert of article")
+			return
+		}
+		utils.RespondWithJson(w, dat, http.StatusInternalServerError)
+		return
+	}
+
+	parsedUUID := uuid.MustParse(requestBody.TagId)
+	createTagArticleParams := database.AddTagToArticleParams{
+		AritcleID: articleData.ID,
+		TagID:     parsedUUID,
+	}
+	_, err = cfg.Db.AddTagToArticle(r.Context(), createTagArticleParams)
+	if err != nil {
+		slog.Error("An error occured while adding tag to article into the database", "error", err)
 		errorResponse := errResponseBody{
 			Message: "Failed to create article",
 		}
