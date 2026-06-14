@@ -8,7 +8,7 @@ package components
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
-func ArticleGrid() templ.Component {
+func Footer() templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -29,23 +29,7 @@ func ArticleGrid() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"grid grid-cols-1 md:grid-cols-12 gap-8\">")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = FeaturedCard().Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = SecondaryCard().Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = SmallListItemSection().Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<footer class=\"flex flex-col md:flex-row justify-between items-center w-full px-margin-mobile md:px-gutter py-8 max-w-container-max mx-auto gap-4 border-t border-outline-variant mt-section-gap\"><div class=\"flex flex-col items-center md:items-start gap-2\"><span class=\"font-display-lg text-headline-sm text-primary\">Minimalist</span><p class=\"font-body-md text-body-md text-on-surface-variant\">© 2024 Minimalist. Designed for quiet focus.</p></div><div class=\"flex flex-wrap justify-center gap-6\"><a class=\"text-on-surface-variant font-label-sm text-label-sm hover:text-primary transition-colors\" href=\"#\">Archive</a> <a class=\"text-on-surface-variant font-label-sm text-label-sm hover:text-primary transition-colors\" href=\"#\">Newsletter</a> <a class=\"text-on-surface-variant font-label-sm text-label-sm hover:text-primary transition-colors\" href=\"#\">RSS Feed</a> <a class=\"text-on-surface-variant font-label-sm text-label-sm hover:text-primary transition-colors\" href=\"#\">Terms</a></div></footer>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
