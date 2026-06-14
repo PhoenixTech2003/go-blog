@@ -44,7 +44,7 @@ func Compose(formSubmissionSuccessful *bool) templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<main class=\"grow flex flex-col items-center justify-center px-margin-mobile md:px-margin-desktop py-stack-lg\" style=\"padding-top: 80px;\"><div class=\"w-full max-w-2xl mx-auto flex flex-col gap-stack-lg\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<main class=\"grow flex flex-col items-center justify-center px-margin-mobile md:px-gutter py-stack-lg\" style=\"padding-top: 80px;\"><div class=\"w-full max-w-reading-max mx-auto flex flex-col gap-stack-lg\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

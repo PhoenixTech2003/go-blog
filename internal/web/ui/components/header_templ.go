@@ -29,7 +29,7 @@ func ComposeHeader() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"space-y-unit text-center md:text-left\"><h1 class=\"font-headline-lg text-headline-lg text-primary tracking-tight\">Capture Thought</h1><p class=\"font-body-md text-body-md text-on-surface-variant\">Document the wisdom that inspires your journey.</p></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"space-y-unit text-center md:text-left\"><h1 class=\"type-headline-md text-primary tracking-tight\">Capture Thought</h1><p class=\"type-body-md text-on-surface-variant\">Document the wisdom that inspires your journey.</p></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
