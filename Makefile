@@ -15,5 +15,8 @@ tailwind:
 templ:
 	templ generate --watch --proxy="http://localhost:8081" --cmd="go run ."
 
+android:
+	cd ./clients/go_blog_app && flutter run
+
 build:
 	templ generate && cd ./internal/web && bunx @tailwindcss/cli -i ./static/css/input.css -o ./static/css/output.css && cd - && go build -o ./bin/app .
