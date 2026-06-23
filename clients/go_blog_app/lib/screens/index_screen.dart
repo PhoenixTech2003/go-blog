@@ -6,7 +6,7 @@ class IndexScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Index Page")),
+      appBar: AppBar(title: Text("Minimalist")),
       body: Center(child: Text("Hello world")),
     );
   }
