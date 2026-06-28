@@ -36,6 +36,30 @@ class Body extends StatelessWidget {
                     "Evaluating the tools that prioritize utility over distraction in an age of constant connectivity",
                 blogDate: "Oct 22, 2024",
               ),
+              FeaturedBlogCard(
+                hasImage: false,
+                title: "Living with Less: A Year of Intentionality",
+                articleSnippet:
+                    "Personal reflections on the first twelve months of living with fewer than 100 essential possessions.",
+                blogDate: "Oct 20, 2024",
+                blogTag: "Life",
+              ),
+              FeaturedBlogCard(
+                hasImage: false,
+                title: "Typography as Voice",
+                articleSnippet:
+                    "How the weight and rhythm of a typeface dictates the internal monologue of the reader.",
+                blogDate: "Oct 18, 2024",
+                blogTag: "Design",
+              ),
+              FeaturedBlogCard(
+                hasImage: false,
+                title: "The Slow Web Manifesto",
+                articleSnippet:
+                    "Proposing a shift from algorithmic speed to human-paced discovery on the internet.",
+                blogDate: "Oct 15, 2024",
+                blogTag: "Tech",
+              ),
             ],
           ),
         ),
