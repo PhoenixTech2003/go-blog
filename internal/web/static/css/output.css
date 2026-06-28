@@ -269,9 +269,6 @@
   .mt-section-gap {
     margin-top: var(--spacing-section-gap);
   }
-  .mt-stack-lg {
-    margin-top: var(--spacing-stack-lg);
-  }
   .mb-6 {
     margin-bottom: calc(var(--spacing) * 6);
   }
@@ -280,9 +277,6 @@
   }
   .mb-24 {
     margin-bottom: calc(var(--spacing) * 24);
-  }
-  .mb-stack-lg {
-    margin-bottom: var(--spacing-stack-lg);
   }
   .mb-unit {
     margin-bottom: var(--spacing-unit);
@@ -319,18 +313,6 @@
   }
   .h-full {
     height: 100%;
-  }
-  .h-px {
-    height: 1px;
-  }
-  .min-h-screen {
-    min-height: 100vh;
-  }
-  .w-8 {
-    width: calc(var(--spacing) * 8);
-  }
-  .w-12 {
-    width: calc(var(--spacing) * 12);
   }
   .w-full {
     width: 100%;
@@ -410,25 +392,11 @@
       margin-block-end: calc(var(--spacing-stack-lg) * calc(1 - var(--tw-space-y-reverse)));
     }
   }
-  .space-y-stack-md {
-    :where(& > :not(:last-child)) {
-      --tw-space-y-reverse: 0;
-      margin-block-start: calc(var(--spacing-stack-md) * var(--tw-space-y-reverse));
-      margin-block-end: calc(var(--spacing-stack-md) * calc(1 - var(--tw-space-y-reverse)));
-    }
-  }
   .space-y-unit {
     :where(& > :not(:last-child)) {
       --tw-space-y-reverse: 0;
       margin-block-start: calc(var(--spacing-unit) * var(--tw-space-y-reverse));
       margin-block-end: calc(var(--spacing-unit) * calc(1 - var(--tw-space-y-reverse)));
-    }
-  }
-  .space-x-stack-sm {
-    :where(& > :not(:last-child)) {
-      --tw-space-x-reverse: 0;
-      margin-inline-start: calc(var(--spacing-stack-sm) * var(--tw-space-x-reverse));
-      margin-inline-end: calc(var(--spacing-stack-sm) * calc(1 - var(--tw-space-x-reverse)));
     }
   }
   .overflow-hidden {
@@ -469,9 +437,6 @@
   .border-primary {
     border-color: var(--color-primary);
   }
-  .bg-outline {
-    background-color: var(--color-outline);
-  }
   .bg-primary {
     background-color: var(--color-primary);
   }
@@ -502,9 +467,6 @@
   .px-margin-mobile {
     padding-inline: var(--spacing-margin-mobile);
   }
-  .px-stack-lg {
-    padding-inline: var(--spacing-stack-lg);
-  }
   .py-1\.5 {
     padding-block: calc(var(--spacing) * 1.5);
   }
@@ -523,23 +485,14 @@
   .py-stack-sm {
     padding-block: var(--spacing-stack-sm);
   }
-  .pt-4 {
-    padding-top: calc(var(--spacing) * 4);
-  }
   .pt-8 {
     padding-top: calc(var(--spacing) * 8);
-  }
-  .pt-32 {
-    padding-top: calc(var(--spacing) * 32);
   }
   .pt-stack-md {
     padding-top: var(--spacing-stack-md);
   }
   .pb-1 {
     padding-bottom: var(--spacing);
-  }
-  .pb-40 {
-    padding-bottom: calc(var(--spacing) * 40);
   }
   .text-center {
     text-align: center;
@@ -676,15 +629,6 @@
   .uppercase {
     text-transform: uppercase;
   }
-  .not-italic {
-    font-style: normal;
-  }
-  .opacity-20 {
-    opacity: 20%;
-  }
-  .opacity-30 {
-    opacity: 30%;
-  }
   .shadow {
     --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
@@ -712,10 +656,6 @@
     transition-property: transform, translate, scale, rotate;
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
-  }
-  .duration-200 {
-    --tw-duration: 200ms;
-    transition-duration: 200ms;
   }
   .duration-300 {
     --tw-duration: 300ms;
@@ -785,13 +725,6 @@
     &:hover {
       @media (hover: hover) {
         opacity: 80%;
-      }
-    }
-  }
-  .hover\:opacity-90 {
-    &:hover {
-      @media (hover: hover) {
-        opacity: 90%;
       }
     }
   }
@@ -885,11 +818,6 @@
   }
 }
 @property --tw-space-y-reverse {
-  syntax: "*";
-  inherits: false;
-  initial-value: 0;
-}
-@property --tw-space-x-reverse {
   syntax: "*";
   inherits: false;
   initial-value: 0;
@@ -1019,7 +947,6 @@
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
       --tw-space-y-reverse: 0;
-      --tw-space-x-reverse: 0;
       --tw-border-style: solid;
       --tw-leading: initial;
       --tw-font-weight: initial;
