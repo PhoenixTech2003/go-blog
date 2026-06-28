@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_blog_app/widgets/index/body.dart';
 
 class IndexScreen extends StatelessWidget {
   const IndexScreen({super.key});
@@ -8,6 +9,7 @@ class IndexScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Minimalist"),
+
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 8),
@@ -24,9 +26,19 @@ class IndexScreen extends StatelessWidget {
               icon: const Icon(Icons.add),
             ),
           ),
+          IconButton(
+            onPressed: () {},
+            style: IconButton.styleFrom(
+              side: BorderSide(
+                color: Theme.of(context).primaryColor,
+                width: 2.0,
+              ),
+            ),
+            icon: const Icon(Icons.person_3_outlined),
+          ),
         ],
       ),
-      body: Center(child: Text("Hello world")),
+      body: Body(),
     );
   }
 }
