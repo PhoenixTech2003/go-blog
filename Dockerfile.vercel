@@ -1,7 +1,25 @@
-FROM --platform=linux/amd64 debian:stable-slim
+ARG DOCKER_PLATFORM=linux/amd64
 
-RUN apt-get update && apt-get install -y ca-certificates
+FROM --platform=${DOCKER_PLATFORM} golang:1.26.2-alpine AS builder
 
-COPY bin/app /usr/bin/app
+WORKDIR /app
 
-CMD ["app"]
+RUN apk add --no-cache ca-certificates
+
+COPY go.mod go.sum ./
+RUN go mod download
+
+COPY . .
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -trimpath -ldflags="-s -w" -o go-blog
+
+FROM scratch
+
+ENV PORT=80
+ENV SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+
+COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
+COPY --from=builder /app/go-blog /usr/bin/app
+
+EXPOSE 80
+
+CMD ["/usr/bin/app"]

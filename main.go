@@ -1,14 +1,19 @@
 package main
 
 import (
+	"context"
 	"database/sql"
 	"embed"
+	"errors"
 	"fmt"
 	"io/fs"
 	"log"
 	"log/slog"
 	"net/http"
 	"os"
+	"os/signal"
+	"strings"
+	"syscall"
 	"time"
 
 	"github.com/joho/godotenv"
@@ -31,14 +36,10 @@ var staticFiles embed.FS
 func main() {
 	_ = godotenv.Load()
 
-	baseURL := os.Getenv("BASE_URL")
-	if baseURL == "" {
-		baseURL = "http://localhost:8081"
-	}
-	swaggerHost := os.Getenv("SWAGGER_HOST")
-	if swaggerHost == "" {
-		swaggerHost = "localhost:8081"
-	}
+	port := getenvDefault("PORT", "80")
+	addr := ":" + port
+	baseURL := publicBaseURL(port)
+	swaggerHost := publicSwaggerHost(port)
 
 	docs.SwaggerInfo.Host = swaggerHost
 
@@ -56,6 +57,12 @@ func main() {
 		slog.Error("an error occured while opening the database connection", "error", err)
 		return
 	}
+	defer func() {
+		if err := db.Close(); err != nil {
+			slog.Error("an error occured while closing the database connection", "error", err)
+		}
+	}()
+
 	dbConn := database.New(db)
 	api.ApiConfig.Db = dbConn
 	web.WebConfig.Db = dbConn
@@ -69,15 +76,69 @@ func main() {
 	mux.Handle("/compose/", http.StripPrefix("/compose", web.ComposeRouter()))
 	mux.Handle("/", web.IndexRouter())
 
-	addr := ":8081"
 	server := http.Server{
 		Handler:           mux,
 		Addr:              addr,
 		ReadHeaderTimeout: 5 * time.Second,
 	}
-	slog.Info("server is listening", "addr", addr)
-	slog.Info("Swagger UI", "url", fmt.Sprintf("%s/swagger/index.html", baseURL))
-	if err := server.ListenAndServe(); err != nil {
-		log.Fatalf("Failed to start server: %q", err)
+
+	serverErrors := make(chan error, 1)
+	go func() {
+		slog.Info("server is listening", "addr", addr)
+		slog.Info("Swagger UI", "url", fmt.Sprintf("%s/swagger/index.html", baseURL))
+		serverErrors <- server.ListenAndServe()
+	}()
+
+	shutdownSignal, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
+	defer stop()
+
+	select {
+	case err := <-serverErrors:
+		if err != nil && !errors.Is(err, http.ErrServerClosed) {
+			log.Fatalf("Failed to start server: %q", err)
+		}
+	case <-shutdownSignal.Done():
+		slog.Info("shutdown signal received")
+
+		shutdownCtx, cancel := context.WithTimeout(context.Background(), 25*time.Second)
+		defer cancel()
+
+		if err := server.Shutdown(shutdownCtx); err != nil {
+			log.Fatalf("Failed to shut down server: %q", err)
+		}
+
+		if err := <-serverErrors; err != nil && !errors.Is(err, http.ErrServerClosed) {
+			log.Fatalf("Failed to stop server: %q", err)
+		}
 	}
+
+	slog.Info("server stopped")
+}
+
+func getenvDefault(key, fallback string) string {
+	value := os.Getenv(key)
+	if value == "" {
+		return fallback
+	}
+	return value
+}
+
+func publicBaseURL(port string) string {
+	if value := os.Getenv("BASE_URL"); value != "" {
+		return strings.TrimRight(value, "/")
+	}
+	if value := os.Getenv("VERCEL_URL"); value != "" {
+		return "https://" + strings.TrimRight(value, "/")
+	}
+	return fmt.Sprintf("http://localhost:%s", port)
+}
+
+func publicSwaggerHost(port string) string {
+	if value := os.Getenv("SWAGGER_HOST"); value != "" {
+		return value
+	}
+	if value := os.Getenv("VERCEL_URL"); value != "" {
+		return value
+	}
+	return fmt.Sprintf("localhost:%s", port)
 }
