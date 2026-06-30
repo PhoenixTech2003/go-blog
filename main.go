@@ -36,7 +36,7 @@ var staticFiles embed.FS
 func main() {
 	_ = godotenv.Load()
 
-	port := getenvDefault("PORT", "80")
+	port := getenvDefault("PORT", "8081")
 	addr := ":" + port
 	baseURL := publicBaseURL(port)
 	swaggerHost := publicSwaggerHost(port)
