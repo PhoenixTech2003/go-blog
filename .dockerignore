@@ -1,0 +1,15 @@
+.git
+.github
+.env
+.env.*
+!.env.example
+
+bin
+tmp
+node_modules
+internal/web/node_modules
+clients
+
+*.log
+*.out
+*.test
