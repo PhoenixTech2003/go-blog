@@ -25,7 +25,10 @@ go.work.sum
 .env
 
 /tmp
-.github/*
+.github/workflows/cd.yml
+.github/workflows/ci.yml
+
 node_modules
 /designs
 bin/
+.vercel
