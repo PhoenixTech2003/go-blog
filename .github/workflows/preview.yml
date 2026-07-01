@@ -7,10 +7,8 @@ on:
     branches-ignore:
       - main
 jobs:
-  tests:
-    name: Tests
+  Deploy-Preview:
     runs-on: ubuntu-latest
-
     steps:
       - name: Check out code
         uses: actions/checkout@v4
@@ -26,19 +24,6 @@ jobs:
       - name: Check security vulnerabilities
         run: gosec ./...
 
-  style:
-    name: Style
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v4
-
-      - name: Set up Go
-        uses: actions/setup-go@v5
-        with:
-          go-version: "1.26.2"
-
       - name: Check code format
         run: test -z $(go fmt ./...)
 
@@ -48,13 +33,11 @@ jobs:
       - name: Check linting error
         run: staticcheck ./...
 
-  Deploy-Preview:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
       - name: Install Vercel CLI
         run: npm install --global vercel@canary
+
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+
       - name: Deploy Project  to Vercel
         run: vercel deploy  --token=${{ secrets.VERCEL_TOKEN }}
